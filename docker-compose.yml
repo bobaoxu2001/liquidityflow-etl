@@ -1,0 +1,19 @@
+services:
+  liquidityflow-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: duckdb:///data/liquidityflow.duckdb
+      PUBLIC_DOWNLOADS_ENABLED: "false"
+    volumes:
+      - liquidityflow-data:/app/data
+      - ./outputs:/app/outputs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  liquidityflow-data:
