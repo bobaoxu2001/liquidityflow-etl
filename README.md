@@ -1,5 +1,11 @@
 # LiquidityFlow ETL
 
+![CI](https://github.com/bobaoxu2001/liquidityflow-etl/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-green)
+![ETL](https://img.shields.io/badge/Focus-ETL%20%2B%20Data%20Quality-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
 **A production-style Python ETL, data quality, and liquidity-risk platform for investment management technology.**
 
 LiquidityFlow models a daily post-valuation workflow: it ingests public fund and market context, receives a clearly synthetic portfolio file, stages source data in an ODS, enforces control rules, builds warehouse facts, calculates liquidity and rate-risk metrics, and publishes results through FastAPI and regulatory-style JSON/CSV extracts.
@@ -156,6 +162,17 @@ Representative liquidity report section:
 
 Each ETL writes JSON and CSV reports for all three synthetic funds into `outputs/`. Generated files and the local DuckDB database are intentionally ignored by Git.
 
+## Screenshots
+
+### FastAPI OpenAPI Docs
+![FastAPI OpenAPI Docs](docs/screenshots/fastapi_docs.png)
+
+### ETL Run Output
+![ETL Run Output](docs/screenshots/etl_output.png)
+
+### Test Suite
+![Test Suite](docs/screenshots/tests_passed.png)
+
 ## Data quality controls
 
 | Rule | Check | Severity |
@@ -214,6 +231,10 @@ tests/           DQ unit, ETL integration, and API contract tests
 - [Operations runbook](docs/runbook.md)
 
 GitHub Actions validates Python 3.11 and 3.12, compiles the code, runs tests with coverage, and executes the deterministic ETL smoke path.
+
+## Job relevance
+
+LiquidityFlow maps directly to Python ETL Developer work: Python orchestration and pandas-based DQ rules move investment data through SQL ODS and warehouse layers, while FastAPI exposes controlled liquidity and risk outputs. Tests, GitHub Actions, Docker, SDLC documentation, and an operations runbook demonstrate a maintainable UNIX-style delivery workflow. The database boundary uses SQLAlchemy so approved enterprise dialects could be introduced with the appropriate drivers and DDL testing; this project does not claim executed DB2 or Sybase/SAP ASE integrations.
 
 ## Resume bullets
 

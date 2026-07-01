@@ -1,10 +1,12 @@
 PYTHON ?= .venv/bin/python
 PIP ?= .venv/bin/pip
+VENV_PYTHON ?= python3
 
 .PHONY: setup test coverage etl etl-public api dq clean compile
 
 setup:
-	python3.11 -m venv .venv
+	$(VENV_PYTHON) -c "import sys; assert sys.version_info >= (3, 11), 'Python 3.11+ is required'"
+	$(VENV_PYTHON) -m venv .venv
 	$(PIP) install --upgrade pip
 	$(PIP) install -r requirements.txt
 
